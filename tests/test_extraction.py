@@ -8,6 +8,7 @@ from src.extraction import (
 )
 
 
+
 LIGNE = (
     "2026-10-05 10:02:11 ERROR backend "
     "OOMKilled restarts=14 node=db-02"
