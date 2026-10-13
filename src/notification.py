@@ -23,3 +23,7 @@ def choisir_canal(criticite: str) -> str:
     journal.append(notif)
     evt.status = "NOTIFIED"
     return notif
+    def demander_validation(analyse: Analyse, reponse: str) -> bool:
+    if not analyse.sensible:
+        return True
+    return reponse.strip().lower() in ("o", "oui", "y", "yes")
