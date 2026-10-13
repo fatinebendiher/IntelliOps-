@@ -77,7 +77,6 @@ def normaliser_docker(
         message=masquer_secrets(message),
     )
 
-
 def normaliser_trivy(
     rapport: dict,
     numero: int,
