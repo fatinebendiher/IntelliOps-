@@ -5,6 +5,7 @@ from datetime import datetime
 from src.contrat import Evenement, SEVERITES
 
 
+
 def masquer_secrets(texte: str) -> str:
     """
     Masque les valeurs des champs sensibles :
