@@ -35,5 +35,24 @@ class TestNotification(unittest.TestCase):
         e, a = exemple()
         a.sources = ["DOCKER", "TRIVY"]
         self.assertEqual(rediger(e, a).split("\n")[4], "Sources : DOCKER, TRIVY")
+    def test_notifier(self):
+        e, a = exemple()
+        journal = []
+        n = notifier(e, a, journal)
+        self.assertEqual(n.canal, "TEAMS")
+        self.assertEqual(n.destinataire, "equipe-ops")
+        self.assertEqual(journal, [n])
+        self.assertEqual(e.status, "NOTIFIED")
+
+    def test_validation_non_sensible(self):
+        _, a = exemple(sensible=False)
+        self.assertTrue(demander_validation(a, "n"))
+
+    def test_validation_variantes(self):
+        _, a = exemple()
+        for rep in ("o", "OUI", " y ", "Yes"):
+            self.assertTrue(demander_validation(a, rep))
+        for rep in ("n", "non", "peut-être"):
+            self.assertFalse(demander_validation(a, rep))
 if __name__ == "__main__":
     unittest.main()
