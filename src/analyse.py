@@ -29,7 +29,7 @@ def classer(evt: Evenement) -> str:
         match = re.search(r"restarts\s*=\s*(\d+)", evt.message, re.IGNORECASE)
         nombre_restarts = int(match.group(1)) if match else 0
 
-        if nombre_restarts >= 10:
+        if evt.get("redemarrages", 0) > 100:
             return "CRITICAL"
 
         return "MEDIUM"
